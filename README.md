@@ -1,9 +1,9 @@
-##Vue Frontend – After-School Lessons App
+## Vue Frontend – After-School Lessons App
 
 This is the frontend for the After-School Lessons Web Application, developed for the CST3144 – Full Stack Development coursework.
 It is built using Vue.js (Vite) and communicates with the Express.js backend hosted on Render.
 
-#Features
+# Features
 
 Displays all available lessons
 
@@ -19,7 +19,7 @@ Dynamic update of lesson spaces
 
 “View Cart” toggle and success message system
 
-#Project Setup
+# Project Setup
 
 Install dependencies:
 
@@ -47,7 +47,7 @@ Update the API base URL in App.vue after deploying your backend:
 https://your-backend.onrender.com
 
 
-#Endpoints used:
+# Endpoints used:
 
 GET /lessons
 
@@ -55,14 +55,14 @@ POST /orders
 
 PUT /lessons/:id
 
-#Hosting
+# Hosting
 
 The frontend is deployed using GitHub Pages.
 
 Live URL:
 (add when deployed)
 
-##Author
-#Muhammad Rayan
+## Author
+# Muhammad Rayan
 Student ID: M00957926
 Full Stack Development
