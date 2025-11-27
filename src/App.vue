@@ -17,9 +17,9 @@ const checkoutMessage = ref('');
 // --------------------- FETCH LESSONS ---------------------
 async function fetchLessons() {
   try {
-    const res = await fetch('http://localhost:3000/lessons');
+    const res = await fetch('https://express-backend-1g5j.onrender.com/lessons');
     const data = await res.json();
-    // Ensure we have space as number
+    
     lessons.value = data.map(l => ({
       ...l,
       space: Number(l.space)
@@ -62,14 +62,13 @@ const sortedAndFilteredLessons = computed(() => {
     let A = a[key];
     let B = b[key];
 
-    // if numbers, compare numerically
     if (typeof A === 'number' && typeof B === 'number') {
       return (A - B) * order;
     }
 
-    // compare as strings
     A = String(A ?? '').toLowerCase();
     B = String(B ?? '').toLowerCase();
+
     if (A < B) return -1 * order;
     if (A > B) return 1 * order;
     return 0;
@@ -90,7 +89,6 @@ function removeFromCart(index) {
   const item = cart.value[index];
   if (!item) return;
 
-  // find the original lesson and increase its space
   const lesson = lessons.value.find(l => l._id === item._id);
   if (lesson) {
     lesson.space += 1;
@@ -119,7 +117,6 @@ async function checkout() {
   if (!canCheckout.value) return;
 
   try {
-    // Build summary of items grouped by lessonId
     const summaryById = {};
     for (const item of cart.value) {
       const id = item._id;
@@ -138,7 +135,7 @@ async function checkout() {
     };
 
     // 1) POST /orders
-    const res = await fetch('http://localhost:3000/orders', {
+    const res = await fetch('https://express-backend-1g5j.onrender.com/orders', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(orderPayload)
@@ -153,7 +150,7 @@ async function checkout() {
       const lesson = lessons.value.find(l => l._id === item.lessonId);
       if (!lesson) continue;
 
-      await fetch(`http://localhost:3000/lessons/${item.lessonId}`, {
+      await fetch(`https://express-backend-1g5j.onrender.com/lessons/${item.lessonId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ space: lesson.space })
@@ -166,15 +163,13 @@ async function checkout() {
     phone.value = '';
     showCart.value = false;
 
-    // Automatically hide the message after 5 seconds
     setTimeout(() => {
       checkoutMessage.value = '';
     }, 4000);
 
   } catch (err) {
     console.error('Checkout error:', err);
-    checkoutMessage.value =
-      'There was a problem submitting your order. Please try again.';
+    checkoutMessage.value = 'There was a problem submitting your order. Please try again.';
   }
 }
 </script>
@@ -185,7 +180,6 @@ async function checkout() {
       <h1>After-School Lessons</h1>
 
       <div class="header-controls">
-        <!-- Search -->
         <input
           v-model="searchTerm"
           type="text"
@@ -193,7 +187,6 @@ async function checkout() {
           class="search-input"
         />
 
-        <!-- Sort field -->
         <select v-model="sortBy" class="select">
           <option value="subject">Subject</option>
           <option value="location">Location</option>
@@ -201,13 +194,11 @@ async function checkout() {
           <option value="space">Spaces</option>
         </select>
 
-        <!-- Sort order -->
         <select v-model="sortOrder" class="select">
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
         </select>
 
-        <!-- Cart toggle -->
         <button
           class="cart-toggle-btn"
           :disabled="!showCart && cart.length === 0"
@@ -216,13 +207,9 @@ async function checkout() {
           {{ showCart ? 'Back to Lessons' : 'View Cart' }}
           <span v-if="cart.length > 0 && !showCart">({{ cart.length }})</span>
         </button>
-
-
-
       </div>
     </header>
 
-    <!-- LESSONS PAGE -->
     <div v-if="checkoutMessage" class="success-banner">
       {{ checkoutMessage }}
     </div>
@@ -233,16 +220,14 @@ async function checkout() {
         v-for="lesson in sortedAndFilteredLessons"
         :key="lesson._id"
       >
-        <!-- IMAGE -->
         <div class="lesson-image-wrapper" v-if="lesson.image">
           <img
             class="lesson-image"
-            :src="`http://localhost:3000/images/${lesson.image}`"
+            :src="`https://express-backend-1g5j.onrender.com/images/${lesson.image}`"
             :alt="lesson.subject"
           />
         </div>
 
-        <!-- INFO -->
         <h2 class="lesson-title">{{ lesson.subject }}</h2>
         <p class="lesson-text"><strong>Location:</strong> {{ lesson.location }}</p>
         <p class="lesson-text"><strong>Price:</strong> £{{ lesson.price }}</p>
@@ -250,7 +235,6 @@ async function checkout() {
           <strong>Spaces left:</strong> {{ lesson.space }}
         </p>
 
-        <!-- ADD TO CART BUTTON -->
         <button
           class="add-btn"
           :disabled="lesson.space <= 0"
@@ -261,7 +245,6 @@ async function checkout() {
       </div>
     </main>
 
-    <!-- CART + CHECKOUT PAGE -->
     <main v-else class="cart-container">
       <h2>Shopping Cart</h2>
 
@@ -282,18 +265,12 @@ async function checkout() {
         </li>
       </ul>
 
-      <!-- CHECKOUT FORM -->
       <section class="checkout-section">
         <h3>Checkout</h3>
 
         <div class="form-group">
           <label for="name">Name (letters only)</label>
-          <input
-            id="name"
-            v-model="name"
-            type="text"
-            class="input"
-          />
+          <input id="name" v-model="name" type="text" class="input" />
           <small v-if="name && !nameValid" class="error">
             Name must contain letters and spaces only.
           </small>
@@ -301,12 +278,7 @@ async function checkout() {
 
         <div class="form-group">
           <label for="phone">Phone (numbers only)</label>
-          <input
-            id="phone"
-            v-model="phone"
-            type="text"
-            class="input"
-          />
+          <input id="phone" v-model="phone" type="text" class="input" />
           <small v-if="phone && !phoneValid" class="error">
             Phone must contain digits only.
           </small>
@@ -392,7 +364,6 @@ body {
   cursor: not-allowed;
 }
 
-/* LESSONS */
 .lessons-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
@@ -435,7 +406,7 @@ body {
 }
 
 .add-btn {
-  margin-top: auto;                /* ⬅ forces button to bottom */
+  margin-top: auto;
   background: #22c55e;
   border: none;
   color: white;
@@ -445,13 +416,11 @@ body {
   cursor: pointer;
 }
 
-
 .add-btn:disabled {
   background: #9ca3af;
   cursor: not-allowed;
 }
 
-/* CART */
 .cart-container {
   padding: 16px;
 }
@@ -484,7 +453,6 @@ body {
   margin-bottom: 12px;
 }
 
-/* CHECKOUT */
 .checkout-section {
   background: white;
   padding: 12px;
@@ -538,5 +506,4 @@ body {
   font-weight: 600;
   text-align: center;
 }
-
 </style>
