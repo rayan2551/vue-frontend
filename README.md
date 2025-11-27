@@ -1,38 +1,68 @@
-# vue-project
+##Vue Frontend – After-School Lessons App
 
-This template should help get you started developing with Vue 3 in Vite.
+This is the frontend for the After-School Lessons Web Application, developed for the CST3144 – Full Stack Development coursework.
+It is built using Vue.js (Vite) and communicates with the Express.js backend hosted on Render.
 
-## Recommended IDE Setup
+#Features
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Displays all available lessons
 
-## Recommended Browser Setup
+Search and sort system (subject, location, price, spaces)
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+Add/remove items from shopping cart
 
-## Customize configuration
+Checkout form with validation (name + phone)
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+Order submission to backend API
 
-## Project Setup
+Dynamic update of lesson spaces
 
-```sh
+“View Cart” toggle and success message system
+
+#Project Setup
+
+Install dependencies:
+
 npm install
-```
 
-### Compile and Hot-Reload for Development
 
-```sh
+Run the development server:
+
 npm run dev
-```
 
-### Compile and Minify for Production
 
-```sh
+Build for production:
+
 npm run build
-```
+
+
+The production build will be created inside the dist folder.
+
+API Connection
+
+The frontend fetches lesson and order data from the Express backend.
+
+Update the API base URL in App.vue after deploying your backend:
+
+https://your-backend.onrender.com
+
+
+#Endpoints used:
+
+GET /lessons
+
+POST /orders
+
+PUT /lessons/:id
+
+#Hosting
+
+The frontend is deployed using GitHub Pages.
+
+Live URL:
+(add when deployed)
+
+##Author
+#Muhammad Rayan
+Student ID: M00957926
+Full Stack Development
