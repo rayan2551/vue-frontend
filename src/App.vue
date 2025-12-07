@@ -33,7 +33,7 @@ onMounted(() => {
   fetchLessons();
 });
 
-// --------------------- SORT & FILTER ---------------------
+// --------------------- SORT & FILTER Lessons---------------------
 const filteredLessons = computed(() => {
   const term = searchTerm.value.trim().toLowerCase();
   if (!term) return lessons.value;
