@@ -1,68 +1,65 @@
-## Vue Frontend – After-School Lessons App
+##Vue Frontend – After-School Lessons App
 
-This is the frontend for the After-School Lessons Web Application, developed for the CST3144 – Full Stack Development coursework.
-It is built using Vue.js (Vite) and communicates with the Express.js backend hosted on Render.
+This is the frontend application for the After-School Lessons Web App, developed for the CST3144 – Full-Stack Development coursework.
+The frontend is built with Vue.js (Vite) and communicates with the Express.js backend deployed on Render. It displays lessons, allows users to search, sort, add lessons to a cart, and complete checkout with full validation and backend integration.
 
-# Features
+#Features
 
-Displays all available lessons
+Display all available lessons from the backend
 
-Search and sort system (subject, location, price, spaces)
+Search lessons (subject, location, price, spaces)
 
-Add/remove items from shopping cart
+Sorting system (ascending / descending)
+
+Add & remove lessons from the shopping cart
 
 Checkout form with validation (name + phone)
 
-Order submission to backend API
+POST order submission to backend API
 
-Dynamic update of lesson spaces
+PUT request to update lesson spaces after checkout
 
-“View Cart” toggle and success message system
+“View Cart” toggle and success confirmation banner
 
-# Project Setup
+#Project Setup
 
-Install dependencies:
-
+Install dependencies
 npm install
 
-
-Run the development server:
-
+Run development server
 npm run dev
 
-
-Build for production:
-
+Build for production
 npm run build
 
 
-The production build will be created inside the dist folder.
+The production build is generated inside the /dist folder.
 
-API Connection
+#API Connection
 
-The frontend fetches lesson and order data from the Express backend.
+The frontend communicates with the backend deployed on Render.
 
-Update the API base URL in App.vue after deploying your backend:
+Update the API base URL inside App.vue if needed:
 
-https://your-backend.onrender.com
+https://express-backend-1g5j.onrender.com
 
+#Endpoints Used
 
-# Endpoints used:
+GET /lessons – retrieve all lessons
 
-GET /lessons
+POST /orders – submit a new order
 
-POST /orders
+PUT /lessons/:id – update lesson spaces
 
-PUT /lessons/:id
-
-# Hosting
+#Hosting
 
 The frontend is deployed using GitHub Pages.
 
-Live URL:
-(add when deployed)
+🔗 Live Site:
+https://rayan2551.github.io/vue-frontend/
 
-## Author
-# Muhammad Rayan
+#Author
+
+Muhammad Rayan
 Student ID: M00957926
-Full Stack Development
+CST3144 – Full-Stack Development
