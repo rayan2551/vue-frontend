@@ -174,6 +174,15 @@ async function checkout() {
 }
 </script>
 
+<!-- 
+  Main application template.
+  This section defines the user interface, including:
+  - Header with search and sorting controls
+  - Lesson cards displayed from API data
+  - Cart view with checkout form
+  Vue directives are used such as v-if, v-for, and v-model to create a dynamic UI.
+-->
+
 <template>
   <div class="app">
     <header class="header">
