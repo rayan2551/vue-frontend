@@ -23,13 +23,13 @@ PUT request to update lesson spaces after checkout
 
 # Project Setup
 
-Install dependencies
+Install dependencies  
 npm install
 
-Run development server
+Run development server  
 npm run dev
 
-Build for production
+Build for production  
 npm run build
 
 
@@ -41,7 +41,7 @@ The frontend communicates with the backend deployed on Render.
 
 Update the API base URL inside App.vue if needed:
 
-https://express-backend-1g5j.onrender.com
+https://express-backend-1g5j.onrender.com/lessons
 
 # Endpoints Used
 
@@ -60,6 +60,6 @@ https://rayan2551.github.io/vue-frontend/
 
 # Author
 
-Muhammad Rayan
-Student ID: M00957926
+Muhammad Rayan  
+Student ID: M00957926  
 CST3144 – Full-Stack Development
